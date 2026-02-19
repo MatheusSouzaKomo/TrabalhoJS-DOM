@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Player Completo Centralizado</title>
+
+<style>
+/* Corpo e centralização */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ded9d9;
+    color: #f7f5f5;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+}
+
+/* Cabeçalhos */
+h2 {
+    color: #000000;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Container dos players centralizado */
+.player-container {
+    background-color: #f9cf00;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    width: 450px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.5);
+}
+
+/* Botões centralizados */
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* Estilo dos botões */
+button {
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #ff6a00;
+    transform: scale(1.2);
+}
+
+/* Vídeo e áudio centralizados */
+video, audio {
+    display: block;
+    margin: 0 auto 10px auto;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+}
+
+/* Barra de volume */
+.volume-bar {
+    width: 80%;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 5px;
+    margin: 10px auto;
+    overflow: hidden;
+}
+
+.volume-fill {
+    width: 100%;
+    height: 100%;
+    background-color: #4CAF50;
+    transition: width 0.2s ease;
+}
+
+/* Notificação */
+#notificacao {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 204, 0, 0.9);
+    color: #1e1e1e;
+    padding: 12px 20px;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+</style>
+</head>
+<body>
+
+<div class="player-container">
+    <h2>🎬 Player de Vídeo</h2>
+    <video id="meuVideo" width="400" controls>
+        <source src="video.mp4" type="video/mp4">
+        Seu navegador não suporta vídeo.
+    </video>
+    <div class="button-group">
+        <button id="playVideo">▶ Play</button>
+        <button id="pauseVideo">⏸ Pause</button>
+        <button id="volumeUpVideo">🔊 Volume +</button>
+        <button id="volumeDownVideo">🔉 Volume -</button>
+        <button id="muteVideo">🔇 Mute</button>
+    </div>
+    <div class="volume-bar">
+        <div id="videoVolumeFill" class="volume-fill"></div>
+    </div>
+</div>
+
+<div class="player-container">
+    <h2>🎵 Player de Música</h2>
+    <audio id="minhaMusica" controls>
+        <source src="musica.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio.
+    </audio>
+    <div class="button-group">
+        <button id="playMusic">▶ Play</button>
+        <button id="pauseMusic">⏸ Pause</button>
+        <button id="volumeUpMusic">🔊 Volume +</button>
+        <button id="volumeDownMusic">🔉 Volume -</button>
+        <button id="muteMusic">🔇 Mute</button>
+    </div>
+    <div class="volume-bar">
+        <div id="musicVolumeFill" class="volume-fill"></div>
+    </div>
+</div>
+
+<div id="notificacao"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const video = document.getElementById("meuVideo");
+    const musica = document.getElementById("minhaMusica");
+
+    const playVideo = document.getElementById("playVideo");
+    const pauseVideo = document.getElementById("pauseVideo");
+    const volumeUpVideo = document.getElementById("volumeUpVideo");
+    const volumeDownVideo = document.getElementById("volumeDownVideo");
+    const muteVideo = document.getElementById("muteVideo");
+
+    const playMusic = document.getElementById("playMusic");
+    const pauseMusic = document.getElementById("pauseMusic");
+    const volumeUpMusic = document.getElementById("volumeUpMusic");
+    const volumeDownMusic = document.getElementById("volumeDownMusic");
+    const muteMusic = document.getElementById("muteMusic");
+
+    const videoVolumeFill = document.getElementById("videoVolumeFill");
+    const musicVolumeFill = document.getElementById("musicVolumeFill");
+
+    const notificacao = document.getElementById("notificacao");
+
+    function mostrarNotificacao(mensagem) {
+        notificacao.textContent = mensagem;
+        notificacao.style.opacity = "1";
+        setTimeout(() => { notificacao.style.opacity = "0"; }, 2000);
+    }
+
+    function atualizarBarraVideo() {
+        videoVolumeFill.style.width = (video.muted ? 0 : video.volume * 100) + "%";
+    }
+    function atualizarBarraMusica() {
+        musicVolumeFill.style.width = (musica.muted ? 0 : musica.volume * 100) + "%";
+    }
+
+    // Inicializa barras
+    atualizarBarraVideo();
+    atualizarBarraMusica();
+
+    // ----------------- Controles do vídeo -----------------
+    playVideo.addEventListener("click", () => {
+        video.play();
+        mostrarNotificacao("🎬 Vídeo iniciado");
+        alert("Play do vídeo pressionado!"); // ALERT adicionada
+    });
+
+    pauseVideo.addEventListener("click", () => {
+        video.pause();
+        mostrarNotificacao("⏸ Vídeo pausado");
+        alert("Pause do vídeo pressionado!"); // ALERT adicionada
+    });
+
+    volumeUpVideo.addEventListener("click", () => {
+        video.volume = Math.min(1, video.volume + 0.1);
+        mostrarNotificacao("🎬 Volume: " + Math.round(video.volume*100) + "%");
+        atualizarBarraVideo();
+    });
+    volumeDownVideo.addEventListener("click", () => {
+        video.volume = Math.max(0, video.volume - 0.1);
+        mostrarNotificacao("🎬 Volume: " + Math.round(video.volume*100) + "%");
+        atualizarBarraVideo();
+    });
+    muteVideo.addEventListener("click", () => {
+        video.muted = !video.muted;
+        mostrarNotificacao(video.muted ? "🎬 Mute ativado" : "🎬 Mute desativado");
+        atualizarBarraVideo();
+    });
+
+    // ----------------- Controles da música -----------------
+    playMusic.addEventListener("click", () => {
+        musica.play();
+        mostrarNotificacao("🎵 Música iniciada");
+        alert("Play da música pressionado!"); // ALERT adicionada
+    });
+
+    pauseMusic.addEventListener("click", () => {
+        musica.pause();
+        mostrarNotificacao("⏸ Música pausada");
+        alert("Pause da música pressionado!"); // ALERT adicionada
+    });
+
+    volumeUpMusic.addEventListener("click", () => {
+        musica.volume = Math.min(1, musica.volume + 0.1);
+        mostrarNotificacao("🎵 Volume: " + Math.round(musica.volume*100) + "%");
+        atualizarBarraMusica();
+    });
+    volumeDownMusic.addEventListener("click", () => {
+        musica.volume = Math.max(0, musica.volume - 0.1);
+        mostrarNotificacao("🎵 Volume: " + Math.round(musica.volume*100) + "%");
+        atualizarBarraMusica();
+    });
+    muteMusic.addEventListener("click", () => {
+        musica.muted = !musica.muted;
+        mostrarNotificacao(musica.muted ? "🎵 Mute ativado" : "🎵 Mute desativado");
+        atualizarBarraMusica();
+    });
+});
+</script>
+
+</body>
+</html>
