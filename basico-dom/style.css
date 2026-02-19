@@ -1,0 +1,16 @@
+body {
+    height: 100vh; /* ocupa 100% da altura da tela */
+    display: flex;
+    justify-content: center; /* centro horizontal */
+    align-items: center;     /* centro vertical */
+    flex-direction: column;  /* um embaixo do outro */
+    background-color: #efe6de
+    color black;
+}
+
+#botao-mudar {
+    border-radius: 13px;
+    padding: 12px 12px;
+    background-color: #9a0002;
+    color: white;
+}
