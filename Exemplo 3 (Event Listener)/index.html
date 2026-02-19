@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Player Completo Centralizado</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="player-container">
+    <h2>🎬 Player de Vídeo</h2>
+    <video id="meuVideo" width="400" controls>
+        <source src="video.mp4" type="video/mp4">
+        Seu navegador não suporta vídeo.
+    </video>
+    <div class="button-group">
+        <button id="playVideo">▶ Play</button>
+        <button id="pauseVideo">⏸ Pause</button>
+        <button id="volumeUpVideo">🔊 Volume +</button>
+        <button id="volumeDownVideo">🔉 Volume -</button>
+        <button id="muteVideo">🔇 Mute</button>
+    </div>
+    <div class="volume-bar">
+        <div id="videoVolumeFill" class="volume-fill"></div>
+    </div>
+</div>
+
+<div class="player-container">
+    <h2>🎵 Player de Música</h2>
+    <audio id="minhaMusica" controls>
+        <source src="musica.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio.
+    </audio>
+    <div class="button-group">
+        <button id="playMusic">▶ Play</button>
+        <button id="pauseMusic">⏸ Pause</button>
+        <button id="volumeUpMusic">🔊 Volume +</button>
+        <button id="volumeDownMusic">🔉 Volume -</button>
+        <button id="muteMusic">🔇 Mute</button>
+    </div>
+    <div class="volume-bar">
+        <div id="musicVolumeFill" class="volume-fill"></div>
+    </div>
+</div>
+
+<div id="notificacao"></div>
+
+<script src="script.js></script>
+
+</body>
+</html>
+
+<!-- Feito por Arthur Tomaz Dergado e João Pedro dos Anjos -->

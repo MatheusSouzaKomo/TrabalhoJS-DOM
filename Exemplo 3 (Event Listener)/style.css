@@ -1,0 +1,97 @@
+/* Corpo e centralização */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ded9d9;
+    color: #f7f5f5;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+}
+
+/* Cabeçalhos */
+h2 {
+    color: #000000;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Container dos players centralizado */
+.player-container {
+    background-color: #f9cf00;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    width: 450px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.5);
+}
+
+/* Botões centralizados */
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* Estilo dos botões */
+button {
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #ff6a00;
+    transform: scale(1.2);
+}
+
+/* Vídeo e áudio centralizados */
+video, audio {
+    display: block;
+    margin: 0 auto 10px auto;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+}
+
+/* Barra de volume */
+.volume-bar {
+    width: 80%;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 5px;
+    margin: 10px auto;
+    overflow: hidden;
+}
+
+.volume-fill {
+    width: 100%;
+    height: 100%;
+    background-color: #4CAF50;
+    transition: width 0.2s ease;
+}
+
+/* Notificação */
+#notificacao {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 204, 0, 0.9);
+    color: #1e1e1e;
+    padding: 12px 20px;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
