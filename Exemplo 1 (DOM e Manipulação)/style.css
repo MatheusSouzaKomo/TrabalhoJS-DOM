@@ -1,0 +1,43 @@
+/* Remove margens e paddings padrão de todos os elementos */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo do corpo da página */
+body {
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo do título */
+h1 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* Estilo padrão do botão */
+.btn-mudar {
+    background-color: rgb(244, 207, 207);
+    border: 2px solid #999;
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+/* Estilo quando o mouse está SOBRE o botão (classe .ativo) */
+.btn-mudar.ativo {
+    background-color: rgb(255, 247, 0);
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
